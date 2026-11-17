@@ -1,0 +1,118 @@
+{
+  "source": "v0",
+  "artifact": "index-v4.zip (single static index.html, 8 embedded WebP images)",
+  "capabilities": [
+    {
+      "capability": "code",
+      "source": "index.html markup, inline CSS and inline script (Mewflow marketing landing page)",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "assets",
+      "source": "7 referenced base64 WebP images (--i1..--i4, --i6..--i8); --i5 is defined but never used",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "fonts",
+      "source": "Google Fonts Instrument Sans 400/500/600",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "metadata",
+      "source": "<title> only",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "schema",
+      "source": "none detected (no package.json, no schema files)",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "records",
+      "source": "none; all content is hard-coded marketing copy",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "auth_identities",
+      "source": "none; no sign-in or user code",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "authorization",
+      "source": "none",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "uploaded_file_bytes",
+      "source": "none beyond bundled images",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "external_providers",
+      "source": "Instagram/Discord/Gmail/Stripe/PayPal/Notion/Drive appear only as marketing copy; no API calls",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "public_endpoints_callbacks_webhooks",
+      "source": "none",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "schedules",
+      "source": "none",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "secrets",
+      "source": "no environment variables referenced",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "cutover",
+      "source": "v0 hosting",
+      "outcome": "user_action",
+      "status": "pending",
+      "next_action": "Publish in Lovable and point any custom domain when ready"
+    },
+    {
+      "capability": "verification",
+      "source": "build OK, route + theme tests pass, desktop/mobile screenshots compared with original, no console errors",
+      "outcome": "verify",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "theme_toggle",
+      "source": "user request after migration",
+      "outcome": "added",
+      "status": "verified",
+      "next_action": "none"
+    }
+  ]
+}

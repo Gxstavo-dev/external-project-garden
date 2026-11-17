@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Landing page styles live in `src/components/landing/landing.css`, every selector scoped under `.mf`, with colours from tokens in `src/styles.css` — keeps the ported v0 CSS from leaking into other pages.
+- Never give landing elements class names that are also Tailwind utilities (e.g. `top-20`, `hidden`, `flex`) — Tailwind scans these files and silently applies its own styles.
+- Theme is the `.dark` class on `<html>`, set before paint by `themeInitScript` in `src/lib/theme.ts` and toggled by `applyTheme` — avoids a flash of the wrong theme and hydration mismatches.
