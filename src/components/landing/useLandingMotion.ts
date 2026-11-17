@@ -57,7 +57,9 @@ export function useLandingMotion(rootRef: RefObject<HTMLElement | null>) {
     });
 
     // Count-up for numbers marked with data-n.
+    // Numbers inside the feature mockups are counted by the typewriter instead.
     root.querySelectorAll<HTMLElement>("[data-n]").forEach((el) => {
+      if (el.closest(".pi .mk")) return;
       const n = Number(el.dataset["n"]);
       const section = el.closest(".rev");
       if (!section) return;

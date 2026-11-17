@@ -10,6 +10,7 @@ import scene8 from "@/assets/mewflow-scene-8.webp.asset.json";
 import { ConnectionsOrbit } from "./ConnectionsOrbit";
 import { ThemeToggle } from "./ThemeToggle";
 import { useLandingMotion } from "./useLandingMotion";
+import { useTypewriter } from "./useTypewriter";
 
 type Vars = CSSProperties & Record<`--${string}`, string | number>;
 const v = (vars: Record<string, string | number>) =>
@@ -55,6 +56,7 @@ const FAQ = [
 export function MewflowLanding() {
   const rootRef = useRef<HTMLDivElement>(null);
   useLandingMotion(rootRef);
+  useTypewriter(rootRef);
 
   return (
     <div
