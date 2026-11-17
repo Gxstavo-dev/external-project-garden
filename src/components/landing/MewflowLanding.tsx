@@ -7,6 +7,7 @@ import scene4 from "@/assets/mewflow-scene-4.webp.asset.json";
 import scene6 from "@/assets/mewflow-scene-6.webp.asset.json";
 import scene7 from "@/assets/mewflow-scene-7.webp.asset.json";
 import scene8 from "@/assets/mewflow-scene-8.webp.asset.json";
+import { ConnectionsOrbit } from "./ConnectionsOrbit";
 import { ThemeToggle } from "./ThemeToggle";
 import { useLandingMotion } from "./useLandingMotion";
 
@@ -30,15 +31,6 @@ const LOGOS = [
   { name: "Stripe", soon: true },
   { name: "PayPal", soon: true },
   { name: "Notion", soon: true },
-];
-
-const HUB = [
-  { name: "Gmail", left: 22, top: 18 },
-  { name: "Stripe", left: 18, top: 52 },
-  { name: "Google Drive", left: 26, top: 86 },
-  { name: "Discord", left: 78, top: 18 },
-  { name: "Instagram", left: 84, top: 52 },
-  { name: "Notion", left: 74, top: 86 },
 ];
 
 const FAQ = [
@@ -228,19 +220,7 @@ export function MewflowLanding() {
             <h3>The tools you already use, connected</h3>
             <p>Nobody wants to leave the chat. Messages arrive from your inbox, payments go through Stripe, and files stay in Drive.</p>
           </div>
-          <div className="hub">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-              {HUB.map((n) => (
-                <line key={n.name} x1="50" y1="50" x2={n.left} y2={n.top} />
-              ))}
-            </svg>
-            {HUB.map((n, k) => (
-              <div key={n.name} className="n" style={{ ...v({ k }), left: `${n.left}%`, top: `${n.top}%` }}>
-                {n.name}
-              </div>
-            ))}
-            <div className="core"><span><Logo /></span></div>
-          </div>
+          <ConnectionsOrbit />
         </div>
 
         <div className="fp rev">

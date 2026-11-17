@@ -106,11 +106,13 @@ export function useLandingMotion(rootRef: RefObject<HTMLElement | null>) {
       depthTargets.forEach((el) => {
         const r = el.getBoundingClientRect();
         const p = (r.top + r.height / 2 - vh / 2) / vh;
-        el.style.setProperty("--scroll-depth", clamp(-30, 30, -p * 46) + "px");
+        // Feature pictures move less than the hero so they stay inside their cards.
+        const depthRange = el.classList.contains("pi") ? 6 : 30;
+        el.style.setProperty("--scroll-depth", clamp(-depthRange, depthRange, -p * 46) + "px");
         el.style.setProperty("--scroll-tilt", clamp(-8, 8, p * 10) + "deg");
         if (el.classList.contains("pi")) {
-          el.style.setProperty("--panel-depth", 36 - Math.min(36, Math.abs(p) * 28) + "px");
-          el.style.setProperty("--panel-scale", (1 + Math.max(0, 1 - Math.abs(p)) * 0.08).toFixed(3));
+          el.style.setProperty("--panel-depth", 8 - Math.min(8, Math.abs(p) * 8) + "px");
+          el.style.setProperty("--panel-scale", (1 + Math.max(0, 1 - Math.abs(p)) * 0.015).toFixed(3));
           el.style.setProperty("--card-y", clamp(-38, 38, p * 58) + "px");
           el.style.setProperty("--card-rotate", clamp(-8, 8, p * 11) + "deg");
           el.style.setProperty("--card-rx", clamp(-5, 5, -p * 7) + "deg");
@@ -132,11 +134,6 @@ export function useLandingMotion(rootRef: RefObject<HTMLElement | null>) {
         el.style.setProperty("--scene-scale", (0.965 + Math.sin(prog * Math.PI) * 0.035).toFixed(3));
         el.style.setProperty("--copy-x", -drift * 0.4 + "px");
         el.style.setProperty("--copy-y", -distance * 0.45 + "px");
-        const hub = el.querySelector<SVGElement>(".hub svg");
-        if (hub) {
-          hub.style.setProperty("--hub-spin", (prog - 0.5) * 28 + "deg");
-          hub.style.setProperty("--hub-scale", (1 + Math.sin(prog * Math.PI) * 0.12).toFixed(3));
-        }
         const panel = el.querySelector<HTMLElement>(".pi .mk");
         if (panel) panel.style.setProperty("--glint-x", (prog - 0.5) * 100 + "px");
       });

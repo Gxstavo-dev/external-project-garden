@@ -78,13 +78,6 @@
 .mf .row b{font-weight:600}
 .mf .note{background:var(--note);color:var(--note-foreground);border-radius:6px;padding:7px 9px;margin:8px 0}
 .mf .tot{display:flex;justify-content:space-between;margin-top:8px;font-weight:600;font-size:13px}
-.mf .hub{position:relative;min-height:340px}
-.mf .hub svg{position:absolute;inset:0;width:100%;height:100%}
-.mf .hub line{stroke:var(--border);stroke-width:1.2;stroke-dasharray:4 4}
-.mf .hub .n{position:absolute;transform:translate(-50%,-50%);font-size:11px;display:flex;gap:6px;align-items:center;white-space:nowrap}
-.mf .hub .core{position:absolute;left:50%;top:50%;width:70px;height:70px;transform:translate(-50%,-50%);border-radius:18px;background:var(--card);box-shadow:0 8px 30px oklch(0 0 0 / 0.12);display:grid;place-items:center}
-.mf .core span{width:34px;height:34px;border-radius:9px;background:var(--ink-fixed);display:grid;place-items:center}
-.mf .core i{width:14px;height:14px;border-radius:3px;background:repeating-linear-gradient(135deg,var(--brand-red) 0 3px,var(--paper) 3px 6px,var(--brand-blue) 6px 9px)}
 .mf .faq{max-width:540px;margin:90px auto 60px;padding:0 20px}
 .mf .faq h2{text-align:center;margin-bottom:26px}
 .mf details{border-bottom:1px solid var(--border);padding:14px 0}
@@ -166,17 +159,12 @@
 .mf .rev.on .mk>:nth-child(7){transition-delay:0.84s}
 .mf .rev.on .mk>:nth-child(8){transition-delay:0.96s}
 .mf .rev.on .mk>:nth-child(9){transition-delay:1.08s}
-.mf .hub line{animation:dash 1.4s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-16}}
-.mf .hub .n{opacity:0;transition:opacity .6s;transition-delay:calc(var(--k)*.15s + .3s)}
-.mf .rev.on .hub .n{opacity:1}
-.mf .core::after{content:"";position:absolute;inset:0;border-radius:18px;border:2px solid var(--ink-fixed);opacity:0;animation:rp 2.4s infinite}
 @keyframes rp{0%{opacity:.4;transform:scale(1)}100%{opacity:0;transform:scale(1.9)}}
 @media (prefers-reduced-motion:reduce){
-  .mf .up,.mf .chat .msg,.mf .chat .rep,.mf .help,.mf .ck,.mf .logos div,.mf .rev .mk>*,.mf .hl b,.mf .hub .n{animation:none!important;opacity:1!important;transform:none!important;transition:none!important}
+  .mf .up,.mf .chat .msg,.mf .chat .rep,.mf .help,.mf .ck,.mf .logos div,.mf .rev .mk>*,.mf .hl b{animation:none!important;opacity:1!important;transform:none!important;transition:none!important}
   .mf .hl{background-size:100% 100%!important;animation:none}
-  .mf .cube,.mf .core::after{display:none}
-  .mf .hub line,.mf .chat{animation:none}
+  .mf .cube{display:none}
 }
 .mf /* Sculptural depth and scroll choreography — decorative only. */
 .hero{isolation:isolate;perspective:1200px}
@@ -190,7 +178,6 @@
 .mf .pi.e::after{left:auto;right:8%;background:linear-gradient(135deg,oklch(0.865 0.0676 63.8),color-mix(in srgb,var(--tag) 55%,oklch(0.568 0.202 283)))}
 .mf .fp.rev.on .pi::after{opacity:.88}
 .mf .fp.rev.on .pi:hover{box-shadow:0 24px 55px oklch(0 0 0 / 0.14)}
-.mf .hub .core{transform:translate(-50%,-50%) translateZ(38px);transform-style:preserve-3d;box-shadow:0 18px 36px oklch(0 0 0 / 0.16),0 0 0 8px color-mix(in srgb,var(--tag) 8%,transparent)}
 @keyframes orbit-drift{0%,100%{margin-top:0;filter:hue-rotate(0deg)}50%{margin-top:-10px;filter:hue-rotate(12deg)}}
 @media(max-width:860px){
   .mf .hero::after{right:3%;top:3%;width:110px;opacity:.7}
@@ -211,12 +198,10 @@
 .mf .pi .mk::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(120deg,transparent 20%,oklch(1 0 0 / 0.19) 48%,transparent 72%);background-position:calc(50% + var(--glint-x,0px)) 0;background-size:220% 100%;opacity:.48;transform:translateZ(1px)}
 .mf .hero .win{transform:translate3d(0,var(--hero-y,0px),24px) rotateX(calc(var(--scroll-tilt,0deg) + var(--pointer-rx,0deg))) rotateY(var(--pointer-ry,0deg))}
 .mf .hero .chat{transform:translate3d(0,var(--chat-y,0px),44px) rotateX(var(--pointer-rx,0deg)) rotateY(var(--pointer-ry,0deg))}
-.mf .hub svg{transform:rotate(var(--hub-spin,0deg)) scale(var(--hub-scale,1));transform-origin:50% 50%;transition:transform .18s linear}
 .mf #sp{box-shadow:0 0 12px color-mix(in srgb,var(--tag) 60%,transparent);transition:width .08s linear}
 @media(prefers-reduced-motion:reduce){
   .mf .fp.rev,.mf .lead.rev,.mf .logos.rev,.mf .big.rev,.mf .faq.rev,.mf .band.rev,.mf .fp .tx,.mf .pi .mk,.mf .hero .win,.mf .hero .chat{transform:none!important;transition:none!important;will-change:auto}
   .mf .pi .mk::before{display:none}
-  .mf .hub svg{transform:none!important}
 }
 
 /* Replacements for inline styles and browser defaults the original page relied on. */
@@ -233,19 +218,62 @@
 .mf .fp.bare{background:none;padding:10px 20px}
 .mf .pi.focus-y20{background-position:center 20%}
 .mf .pi.focus-y30{background-position:center 30%}
-.mf .core .lgo{width:24px;height:20px;color:var(--paper);animation:none}
 .mf .fcols{display:flex;gap:70px}
 
-/* Theme toggle in the top navigation. */
-.mf .theme-toggle{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:var(--card);color:var(--foreground);cursor:pointer;transition:transform .2s,background .2s}
-.mf .theme-toggle:hover{background:var(--accent);transform:translateY(-1px)}
-.mf .theme-toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
-.mf .theme-toggle svg{width:16px;height:16px}
-.mf .theme-toggle .moon{display:none}
-.dark .mf .theme-toggle .sun{display:none}
-.dark .mf .theme-toggle .moon{display:block}
-@media (max-width:860px){.mf nav .theme-toggle{margin-left:auto}}
 
 /* More breathing room between the feature cards (requested by the user). */
 .mf .fp{margin-bottom:clamp(48px,7vw,96px)}
 .mf h2.tagline{padding-bottom:clamp(40px,5vw,64px)}
+
+/* "The tools you already use, connected" — orbit diagram. */
+.mf .orbit{position:relative;width:100%;aspect-ratio:540/420;max-height:440px;margin-inline:auto;isolation:isolate}
+.mf .orbit-glow{position:absolute;inset:6%;border-radius:50%;z-index:-1;background:radial-gradient(closest-side,color-mix(in oklab,var(--tag) 16%,transparent),color-mix(in oklab,var(--highlight) 10%,transparent) 55%,transparent);filter:blur(6px)}
+.mf .orbit::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(color-mix(in oklab,var(--foreground) 16%,transparent) 1px,transparent 1.4px);background-size:16px 16px;-webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent);mask-image:radial-gradient(closest-side,#000 30%,transparent)}
+.mf .orbit-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mf .orbit-ring circle{fill:none;stroke:color-mix(in oklab,var(--foreground) 14%,transparent);stroke-width:1;stroke-dasharray:2 7;stroke-linecap:round}
+.mf .orbit-ring{transform-box:view-box;transform-origin:50% 50%}
+.mf .orbit-ring-a{animation:orbit-spin 40s linear infinite}
+.mf .orbit-ring-b{animation:orbit-spin 70s linear infinite reverse}
+@keyframes orbit-spin{to{transform:rotate(360deg)}}
+.mf .orbit-track{fill:none;stroke:color-mix(in oklab,var(--app) 26%,var(--border));stroke-width:1.4}
+.mf .orbit-pulse{fill:none;stroke:var(--app);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:14 86;stroke-dashoffset:100;opacity:0;animation:orbit-flow 2.8s cubic-bezier(.5,0,.3,1) infinite;filter:drop-shadow(0 0 4px color-mix(in oklab,var(--app) 60%,transparent))}
+@keyframes orbit-flow{0%{stroke-dashoffset:100;opacity:0}12%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.mf .orbit-packet{fill:var(--app);filter:drop-shadow(0 0 5px var(--app))}
+.mf .orbit-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity .6s,translate .6s;transition-delay:calc(var(--k)*.12s + .2s);translate:0 10px}
+.mf .rev.on .orbit-node{opacity:1;translate:0 0}
+.mf .orbit-tile{display:grid;place-items:center;width:clamp(42px,5vw,56px);aspect-ratio:1;border-radius:16px;background:linear-gradient(160deg,var(--card),color-mix(in oklab,var(--card) 88%,var(--app)));border:1px solid color-mix(in oklab,var(--app) 22%,var(--border));box-shadow:0 1px 0 color-mix(in oklab,var(--paper) 70%,transparent) inset,0 10px 24px -10px color-mix(in oklab,var(--app) 55%,transparent),0 2px 6px oklch(0 0 0 / 0.06);animation:orbit-float 6s ease-in-out infinite;animation-delay:calc(var(--k)*-1s);transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .35s}
+.mf .orbit-tile svg{width:46%;height:46%;fill:var(--app)}
+.mf .orbit-node small{font-size:10.5px;font-weight:500;color:var(--muted-foreground);letter-spacing:-.005em}
+.mf .orbit-node:hover .orbit-tile{transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 4px color-mix(in oklab,var(--app) 14%,transparent),0 16px 30px -10px color-mix(in oklab,var(--app) 70%,transparent)}
+@keyframes orbit-float{50%{translate:0 -5px}}
+.mf .orbit-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.mf .orbit-core-tile{position:relative;display:grid;place-items:center;width:clamp(68px,8vw,88px);aspect-ratio:1;border-radius:24px;background:radial-gradient(120% 120% at 30% 20%,color-mix(in oklab,var(--ink-fixed) 70%,var(--paper)),var(--ink-fixed) 60%);box-shadow:0 1px 0 oklch(1 0 0 / 0.18) inset,0 24px 50px -16px color-mix(in oklab,var(--tag) 60%,transparent),0 8px 20px oklch(0 0 0 / 0.25)}
+.mf .orbit-core-tile::before{content:"";position:absolute;inset:-2px;border-radius:26px;padding:2px;background:conic-gradient(from var(--orbit-angle,0deg),transparent 0 55%,var(--tag) 70%,var(--highlight) 82%,transparent 95%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:orbit-sheen 4s linear infinite}
+@property --orbit-angle{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes orbit-sheen{to{--orbit-angle:360deg}}
+.mf .orbit-logo{width:46%;height:auto;fill:var(--paper);animation:none;filter:drop-shadow(0 2px 6px oklch(0 0 0 / 0.4))}
+.mf .orbit-core small{font-weight:600;font-size:11px;letter-spacing:-.01em;color:var(--foreground)}
+.mf .orbit-halo{position:absolute;left:50%;top:calc(50% - 10px);width:clamp(68px,8vw,88px);aspect-ratio:1;border-radius:24px;translate:-50% -50%;border:1.5px solid color-mix(in oklab,var(--tag) 55%,transparent);opacity:0;animation:orbit-halo 3.2s cubic-bezier(.2,.7,.2,1) infinite;pointer-events:none}
+.mf .orbit-halo-late{animation-delay:1.6s}
+@keyframes orbit-halo{0%{opacity:.7;scale:1}100%{opacity:0;scale:2.1}}
+.mf .orbit-live{position:absolute;left:4%;top:2%;display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:500;color:var(--muted-foreground);padding:4px 10px 4px 8px;border-radius:999px;background:color-mix(in oklab,var(--card) 80%,transparent);border:1px solid var(--border);backdrop-filter:blur(6px)}
+.mf .orbit-live i{width:7px;height:7px;border-radius:50%;background:var(--avatar-green);box-shadow:0 0 0 0 color-mix(in oklab,var(--avatar-green) 60%,transparent);animation:orbit-live 1.8s infinite}
+@keyframes orbit-live{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.mf .tone-gmail{--app:var(--app-gmail)}.mf .tone-discord{--app:var(--app-discord)}.mf .tone-stripe{--app:var(--app-stripe)}
+.mf .tone-instagram{--app:var(--app-instagram)}.mf .tone-drive{--app:var(--app-drive)}.mf .tone-notion{--app:var(--foreground)}
+@media (max-width:860px){.mf .orbit-node small{font-size:9.5px}.mf .orbit-live{display:none}}
+@media (prefers-reduced-motion:reduce){.mf .orbit-ring,.mf .orbit-pulse,.mf .orbit-tile,.mf .orbit-core-tile::before,.mf .orbit-halo,.mf .orbit-live i{animation:none!important}.mf .orbit-packet{display:none}.mf .orbit-node{opacity:1;translate:none;transition:none}}
+
+/* Theme toggle: icon only, sun and moon swap with a spin. */
+.mf .theme-toggle{position:relative;display:inline-grid;place-items:center;width:32px;height:32px;padding:0;border:0;background:none;color:var(--foreground);cursor:pointer;border-radius:8px}
+.mf .theme-toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+.mf .theme-toggle svg{grid-area:1/1;width:18px;height:18px;transition:transform .6s cubic-bezier(.3,1.5,.5,1),opacity .35s}
+.mf .theme-toggle .moon{opacity:0;transform:rotate(-120deg) scale(.4)}
+.dark .mf .theme-toggle .sun{opacity:0;transform:rotate(120deg) scale(.4)}
+.dark .mf .theme-toggle .moon{opacity:1;transform:none}
+.mf .theme-toggle:hover .sun{transform:rotate(45deg)}
+.dark .mf .theme-toggle:hover .moon{transform:rotate(-18deg)}
+@media (max-width:860px){.mf nav .theme-toggle{margin-left:auto}}
+
+/* Keep feature pictures inside their cards: the card tilts as one flat piece. */
+.mf .fp.rev{transform-style:flat}

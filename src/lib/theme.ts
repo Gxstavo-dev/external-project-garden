@@ -27,3 +27,43 @@ export function applyTheme(theme: Theme) {
     // Storage can be blocked; the theme still applies for this visit.
   }
 }
+
+/** Distance from (x, y) to the farthest viewport corner: the reveal circle's final radius. */
+export function revealRadius(x: number, y: number, width: number, height: number) {
+  return Math.hypot(Math.max(x, width - x), Math.max(y, height - y));
+}
+
+/**
+ * Switches theme with a circular reveal growing from the given point (the toggle).
+ * Falls back to a short colour fade where View Transitions are unavailable or motion is reduced.
+ */
+export function switchTheme(origin?: { x: number; y: number }) {
+  const root = document.documentElement;
+  const next = nextTheme(root.classList.contains("dark") ? "dark" : "light");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduced || typeof document.startViewTransition !== "function") {
+    if (!reduced) {
+      root.classList.add("theme-fading");
+      window.setTimeout(() => root.classList.remove("theme-fading"), 500);
+    }
+    applyTheme(next);
+    return;
+  }
+
+  const x = origin?.x ?? window.innerWidth - 40;
+  const y = origin?.y ?? 40;
+  const r = revealRadius(x, y, window.innerWidth, window.innerHeight);
+  const transition = document.startViewTransition(() => applyTheme(next));
+  transition.ready
+    .then(() => {
+      root.animate(
+        {
+          clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${r}px at ${x}px ${y}px)`],
+          filter: ["blur(6px)", "blur(0px)"],
+        },
+        { duration: 750, easing: "cubic-bezier(.2,.7,.2,1)", pseudoElement: "::view-transition-new(root)" },
+      );
+    })
+    .catch(() => {});
+}
